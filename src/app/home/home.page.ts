@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, InfiniteScrollCustomEvent, IonAvatar, IonItem, IonSkeletonText, IonList, IonAlert, IonLabel, IonButton, IonBadge, IonRow } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, InfiniteScrollCustomEvent, IonAvatar, IonItem, IonSkeletonText, IonList, IonAlert, IonLabel, IonButton, IonBadge, IonRow, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonThumbnail } from '@ionic/angular/standalone';
 import { PokemonService } from '../services/pokemon.service';
 import { catchError, finalize } from 'rxjs';
 import { Pokemon } from '../interfaces/pokemon';
@@ -11,11 +11,11 @@ import { RouterModule } from '@angular/router';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonAvatar, IonItem, IonSkeletonText, IonList, IonAlert, IonLabel, IonButton, RouterModule, IonBadge, IonRow],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonAvatar, IonItem, IonSkeletonText, IonList, IonAlert, IonLabel, IonButton, RouterModule, IonBadge, IonRow, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonThumbnail],
 })
 export class HomePage {
 
-  private currentPage = 1;
+  public _currentPage = 1;
   public error = null;
   public isLoading = false;
   public names: string[] = []
@@ -26,6 +26,17 @@ export class HomePage {
   public next = ''
   public previous = ''
   public pokemonService = inject(PokemonService)
+  public offset = 0;
+
+  get currentPage(): number {
+    return this._currentPage;
+  }
+
+  set currentPage(value: number) {
+    this._currentPage = value;
+    this.resetData();
+    this.loadPokemons();
+  }
 
   constructor() {
     this.loadPokemons()
@@ -38,7 +49,7 @@ export class HomePage {
       this.isLoading = true;
     }
 
-    this.pokemonService.getPokemons(0, 20 * this.currentPage).pipe(
+    this.pokemonService.getPokemons(this.currentPage * 20 - 20, 20 * this.currentPage).pipe(
       finalize(() => {
         this.isLoading = false;
         if (event) {
@@ -72,13 +83,6 @@ export class HomePage {
         this.loadPokemonData(this.names)
       }
     })
-    console.log('Pokemons: ', this.pokemons)
-  }
-
-  loadDetails(name: string) {
-    return this.pokemonService.getPokemonDetails(name).subscribe((pokemon) => {
-      console.log(pokemon);
-    })
   }
 
   loadPokemonData(names: string[]) {
@@ -93,11 +97,24 @@ export class HomePage {
         }
       });
     });
-    console.log(this.pokemonData)
+  }
+
+  resetData() {
+    this.names = [];
+    this.pokemons = [];
+    this.pokemonData = [];
   }
 
   paginaAnterior() {
+    if (this.currentPage >= 2) {
+      this.currentPage--;
+    }
+    console.log(this.currentPage)
+  }
+
+  proximaPagina() {
     this.currentPage++;
     console.log(this.currentPage)
   }
+
 }
