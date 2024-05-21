@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <!-- <ion-list>
     @for (pokemon of pokemonData; track pokemon.id){
     <ion-item lines="none" class="ion-padding-bottom" button [routerLink]="['/details',pokemon.id]">
       <ion-avatar slot="start">
@@ -25,12 +25,40 @@
     </ion-item>
     }
     }
-  </ion-list>
+  </ion-list> -->
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">Pokemons</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        @for (pokemon of pokemonData; track pokemon.id){
+        <ion-item lines="none" class="ion-padding-bottom" button [routerLink]="['/details',pokemon.id]">
+          <ion-thumbnail slot="start">
+            <img [src]="pokemonImageBaseUrl + pokemon.id + '.gif'" />
+          </ion-thumbnail>
+          <ion-label class="ion-text-center">
+            {{pokemon.name}}
+          </ion-label>
+          <ion-badge color="secondary">{{pokemon.types[0].type.name}}</ion-badge>
+        </ion-item>
+        } @empty {
+        @if (!isLoading) {
+        <ion-item lines="none" class="ion-padding-bottom">
+          <ion-label class="ion-text-center">Nenhum pokemon encontrado</ion-label>
+        </ion-item>
+        }
+        }
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 
   <ion-row class="ion-justify-content-center">
 
-    <ion-button shape="round" (click)="paginaAnterior()">Página anterior</ion-button>
-    <ion-button shape="round">Próxima página</ion-button>
+    <ion-button shape="round" (click)="paginaAnterior()" [disabled]="currentPage === 1">Página anterior</ion-button>
+    <p class="ion-padding-start ion-padding-end">Página {{currentPage}}</p>
+    <ion-button shape="round" (click)="proximaPagina()">Próxima página</ion-button>
   </ion-row>
 
 </ion-content>
