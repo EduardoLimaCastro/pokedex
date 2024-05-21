@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, InfiniteScrollCustomEvent, IonAvatar, IonItem, IonSkeletonText, IonList, IonAlert, IonLabel, IonButton } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, InfiniteScrollCustomEvent, IonAvatar, IonItem, IonSkeletonText, IonList, IonAlert, IonLabel, IonButton, IonBadge, IonRow } from '@ionic/angular/standalone';
 import { PokemonService } from '../services/pokemon.service';
 import { catchError, finalize } from 'rxjs';
 import { Pokemon } from '../interfaces/pokemon';
@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonAvatar, IonItem, IonSkeletonText, IonList, IonAlert, IonLabel, IonButton, RouterModule],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonAvatar, IonItem, IonSkeletonText, IonList, IonAlert, IonLabel, IonButton, RouterModule, IonBadge, IonRow],
 })
 export class HomePage {
 
@@ -25,8 +25,9 @@ export class HomePage {
   public pokemonImageBaseUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/'
   public next = ''
   public previous = ''
+  public pokemonService = inject(PokemonService)
 
-  constructor(private pokemonService: PokemonService) {
+  constructor() {
     this.loadPokemons()
   }
 
@@ -49,10 +50,10 @@ export class HomePage {
 
         this.error = err.error.status_message;
         return []
-      })
+      }),
     ).subscribe({
       next: (res) => {
-        // console.log(res.results)
+        console.log(res.results)
         if (res.previous) {
           this.previous = res.previous;
         }
@@ -95,4 +96,8 @@ export class HomePage {
     console.log(this.pokemonData)
   }
 
+  paginaAnterior() {
+    this.currentPage++;
+    console.log(this.currentPage)
+  }
 }

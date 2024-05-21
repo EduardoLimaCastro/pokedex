@@ -7,43 +7,16 @@
 </ion-header>
 
 <ion-content>
-  @if (isLoading) {
-  <ion-list>
-    @for (i of dummyArray; track i){
-    <ion-item lines="none" class="ion-padding-bottom">
-      <ion-avatar slot="start">
-        <ion-skeleton-text></ion-skeleton-text>
-      </ion-avatar>
-      <ion-skeleton-text animated style="height: 40px"></ion-skeleton-text>
-    </ion-item>
-    }
-  </ion-list>
-  } @else if (error) {
-  <ion-alert header="Erro" [message]="error" isOpen="true" buttons="OK" />
-  }
-
-  <!-- <ion-list>
-    @for (pokemon of pokemons; track pokemon.name){
-    <ion-item lines="none" class="ion-padding-bottom">
-      <ion-avatar slot="start">
-        <ion-skeleton-text></ion-skeleton-text>
-      </ion-avatar>
-      <ion-label class="ion-text-wrap">
-        {{pokemon.name}}
-      </ion-label>
-    </ion-item>
-    }
-  </ion-list> -->
-
   <ion-list>
     @for (pokemon of pokemonData; track pokemon.id){
-    <ion-item lines="none" class="ion-padding-bottom">
+    <ion-item lines="none" class="ion-padding-bottom" button [routerLink]="['/details',pokemon.id]">
       <ion-avatar slot="start">
         <img [src]="pokemonImageBaseUrl + pokemon.id + '.gif'" />
       </ion-avatar>
-      <ion-label class="ion-text-wrap">
+      <ion-label class="ion-text-center">
         {{pokemon.name}}
       </ion-label>
+      <ion-badge color="secondary">{{pokemon.types[0].type.name}}</ion-badge>
     </ion-item>
     } @empty {
     @if (!isLoading) {
@@ -54,7 +27,10 @@
     }
   </ion-list>
 
-  <ion-button shape="round">Página anterior</ion-button>
-  <ion-button shape="round">Próxima página</ion-button>
+  <ion-row class="ion-justify-content-center">
+
+    <ion-button shape="round" (click)="paginaAnterior()">Página anterior</ion-button>
+    <ion-button shape="round">Próxima página</ion-button>
+  </ion-row>
 
 </ion-content>
