@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { PokemonDetails } from '../interfaces/pokemonDetails';
+import { Observable, delay } from 'rxjs';
+import { PokemonResult } from '../interfaces/pokemon';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +15,13 @@ export class PokemonService {
 
   constructor() { }
 
-  getPokemons(page = 1) {
-    return this.http.get(`${this.apiUrl}pokemon/?offset=20&limit=20`);
+  getPokemons(offset: number, limit: number): Observable<PokemonResult> {
+    return this.http.get<PokemonResult>(`${this.apiUrl}pokemon/?offset=${offset}&limit=${limit}`);
   }
 
-  getPokemonDetails() {
+  getPokemonDetails(pokemonName: string): Observable<PokemonDetails> {
+
+    return this.http.get<PokemonDetails>(`${this.apiUrl}/pokemon/${pokemonName}`)
 
   }
 
