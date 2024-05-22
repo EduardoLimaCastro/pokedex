@@ -8,13 +8,44 @@
 
 <ion-content>
   @if (pokemonData){
+  @if (pokemonData.sprites.other['official-artwork'].front_shiny){
+  @if(!shiny){
+  <ion-item>
+    <ion-thumbnail class="content-center">
+      <img [src]="pokemonImageBaseUrl + pokemonData.id + '.png'" />
+    </ion-thumbnail>
+  </ion-item>
+  <ion-row class="ion-justify-content-center">
+    <ion-button (click)="handleShiny()">Shiny</ion-button>
+  </ion-row>
+  } @else{
+  <ion-item>
+    <ion-thumbnail class="content-center">
+      <img [src]="pokemonImageBaseUrl +'shiny/'+ pokemonData.id + '.png'" />
+    </ion-thumbnail>
+  </ion-item>
+  <ion-row class="ion-justify-content-center">
+    <ion-button (click)="handleShiny()">Default</ion-button>
+  </ion-row>
+  }
+  } @else {
   <ion-item>
     <ion-thumbnail class="content-center">
       <img [src]="pokemonImageBaseUrl + pokemonData.id + '.png'" />
     </ion-thumbnail>
   </ion-item>
   <ion-card-header>
-    <ion-card-title class="ion-text-center ">{{pokemonData.species.name}}</ion-card-title>
+    <ion-card-title class="ion-text-center ">Name: {{pokemonData.species.name}}</ion-card-title>
   </ion-card-header>
   }
+  }
+  <!-- <ion-item>
+    <ion-thumbnail class="content-center">
+      <img [src]="pokemonImageBaseUrl +'shiny/'+ pokemonData.id + '.png'" />
+    </ion-thumbnail>
+  </ion-item>
+  } -->
+
+
+
 </ion-content>

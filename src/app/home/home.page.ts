@@ -75,7 +75,6 @@ export class HomePage {
         res.results.forEach((item) => {
           this.names.push(item.name);
         });
-        console.log("names: ", this.names)
         this.pokemons.push(...res.results);
         if (event) {
           event.target.disabled = res.count <= this.currentPage * 20;
@@ -91,7 +90,6 @@ export class HomePage {
       this.pokemonService.getPokemonDetails(name).subscribe({
         next: (pokemon) => {
           this.pokemonData.push(pokemon);
-          console.log(pokemon)
         },
         error: (err) => {
           console.error('Error loading Pokémon details:', err);

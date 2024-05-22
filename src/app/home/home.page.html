@@ -41,7 +41,9 @@
           <ion-label class="ion-text-center">
             {{pokemon.name}}
           </ion-label>
-          <ion-badge color="secondary">{{pokemon.types[0].type.name}}</ion-badge>
+          @for (type of pokemon.types; track type.slot){
+          <ion-badge class="ion-margin-start ">{{type.type.name}}</ion-badge>
+          }
         </ion-item>
         } @empty {
         @if (!isLoading) {
