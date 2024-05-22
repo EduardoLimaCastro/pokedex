@@ -14,18 +14,24 @@
     <ion-thumbnail class="content-center">
       <img [src]="pokemonImageBaseUrl + pokemonData.id + '.png'" />
     </ion-thumbnail>
+    <ion-row class="ion-justify-content-center">
+      <ion-button shape="round" (click)="handlePlay()">Cry</ion-button>
+    </ion-row>
   </ion-item>
   <ion-row class="ion-justify-content-center">
-    <ion-button (click)="handleShiny()">Shiny</ion-button>
+    <ion-button shape="round" (click)="handleShiny()">Shiny</ion-button>
   </ion-row>
   } @else{
   <ion-item>
     <ion-thumbnail class="content-center">
       <img [src]="pokemonImageBaseUrl +'shiny/'+ pokemonData.id + '.png'" />
     </ion-thumbnail>
+    <ion-row class="ion-justify-content-center">
+      <ion-button shape="round" (click)="handlePlay()">Cry</ion-button>
+    </ion-row>
   </ion-item>
   <ion-row class="ion-justify-content-center">
-    <ion-button (click)="handleShiny()">Default</ion-button>
+    <ion-button shape="round" (click)="handleShiny()">Default</ion-button>
   </ion-row>
   }
   } @else {
@@ -39,12 +45,6 @@
   </ion-card-header>
   }
   }
-  <!-- <ion-item>
-    <ion-thumbnail class="content-center">
-      <img [src]="pokemonImageBaseUrl +'shiny/'+ pokemonData.id + '.png'" />
-    </ion-thumbnail>
-  </ion-item>
-  } -->
 
 
 
