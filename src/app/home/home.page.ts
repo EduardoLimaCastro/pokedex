@@ -91,6 +91,7 @@ export class HomePage {
       this.pokemonService.getPokemonDetails(name).subscribe({
         next: (pokemon) => {
           this.pokemonData.push(pokemon);
+          console.log(pokemon)
         },
         error: (err) => {
           console.error('Error loading Pokémon details:', err);
