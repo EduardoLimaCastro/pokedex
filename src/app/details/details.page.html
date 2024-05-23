@@ -40,11 +40,16 @@
       <img [src]="pokemonImageBaseUrl + pokemonData.id + '.png'" />
     </ion-thumbnail>
   </ion-item>
+  <ion-card>
+  </ion-card>
+
+  }
   <ion-card-header>
     <ion-card-title class="ion-text-center ">Name: {{pokemonData.species.name}}</ion-card-title>
   </ion-card-header>
+  <app-stats-card [pokemonName]="pokemonData"></app-stats-card>
   }
-  }
+
 
 
 

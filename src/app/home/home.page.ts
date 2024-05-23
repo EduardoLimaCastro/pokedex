@@ -42,6 +42,8 @@ export class HomePage {
     this.loadPokemons()
   }
 
+
+
   loadPokemons(event?: InfiniteScrollCustomEvent) {
     this.error = null;
 
@@ -84,6 +86,8 @@ export class HomePage {
     })
   }
 
+
+
   loadPokemonData(names: string[]) {
     console.log(names)
     names.forEach((name) => {
@@ -116,4 +120,52 @@ export class HomePage {
     console.log(this.currentPage)
   }
 
+
+  //---GET THE BADGE COLOR ACCORDINGLY TO THE POKEMON TYPE---
+  getBadgeColor(type: string): string {
+    switch (type) {
+      case 'normal':
+        return 'normal';
+      case 'fighting':
+        return 'fighting';
+      case 'flying':
+        return 'flying';
+      case 'poison':
+        return 'poison';
+      case 'ground':
+        return 'ground';
+      case 'rock':
+        return 'rock';
+      case 'bug':
+        return 'bug';
+      case 'ghost':
+        return 'ghost';
+      case 'steel':
+        return 'steel';
+      case 'fire':
+        return 'fire';
+      case 'water':
+        return 'water';
+      case 'grass':
+        return 'grass';
+      case 'electric':
+        return 'electric';
+      case 'psychic':
+        return 'psychic';
+      case 'ice':
+        return 'ice';
+      case 'dragon':
+        return 'dragon';
+      case 'dark':
+        return 'dark';
+      case 'fairy':
+        return 'fairy';
+      case 'stellar':
+        return 'stellar';
+      case 'unknown':
+        return 'unknown';
+      default:
+        return 'primary';
+    }
+  }
 }

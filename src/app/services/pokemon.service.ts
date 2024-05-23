@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { PokemonDetails } from '../interfaces/pokemonDetails';
 import { Observable, delay, map } from 'rxjs';
 import { PokemonResult } from '../interfaces/pokemon';
+import { PokemonSpecies } from '../interfaces/pokemonSpecies';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,10 @@ export class PokemonService {
 
   getPokemonDetails(pokemonName: string): Observable<PokemonDetails> {
     return this.http.get<PokemonDetails>(`${this.apiUrl}/pokemon/${pokemonName}`);
+  }
+
+  getPokemonSpecies(pokemonName: string): Observable<PokemonSpecies> {
+    return this.http.get<PokemonSpecies>(`${this.apiUrl}/pokemon-species/${pokemonName}`);
   }
 
 }
