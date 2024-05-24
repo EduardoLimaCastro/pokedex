@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, InfiniteScrollCustomEvent, IonAvatar, IonItem, IonSkeletonText, IonList, IonAlert, IonLabel, IonButton, IonBadge, IonRow, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonThumbnail } from '@ionic/angular/standalone';
-import { PokemonService } from '../services/pokemon.service';
+import { PokemonService } from '../../services/pokemon.service';
 import { catchError, finalize } from 'rxjs';
-import { Pokemon } from '../interfaces/pokemon';
-import { PokemonDetails } from '../interfaces/pokemonDetails';
+import { Pokemon } from '../../interfaces/pokemon';
+import { PokemonDetails } from '../../interfaces/pokemonDetails';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -66,7 +66,7 @@ export class HomePage {
       }),
     ).subscribe({
       next: (res) => {
-        console.log(res.results)
+        // console.log(res.results)
         if (res.previous) {
           this.previous = res.previous;
         }
@@ -89,7 +89,7 @@ export class HomePage {
 
 
   loadPokemonData(names: string[]) {
-    console.log(names)
+    // console.log(names)
     names.forEach((name) => {
       this.pokemonService.getPokemonDetails(name).subscribe({
         next: (pokemon) => {
@@ -112,12 +112,12 @@ export class HomePage {
     if (this.currentPage >= 2) {
       this.currentPage--;
     }
-    console.log(this.currentPage)
+    // console.log(this.currentPage)
   }
 
   proximaPagina() {
     this.currentPage++;
-    console.log(this.currentPage)
+    // console.log(this.currentPage)
   }
 
 

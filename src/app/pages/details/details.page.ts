@@ -1,18 +1,20 @@
 import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonCardHeader, IonCardTitle, IonThumbnail, IonItem, IonBadge, IonButton, IonRow, IonIcon, IonCard } from '@ionic/angular/standalone';
-import { PokemonService } from '../services/pokemon.service';
-import { PokemonDetails } from '../interfaces/pokemonDetails';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonCardHeader, IonCardTitle, IonThumbnail, IonItem, IonBadge, IonButton, IonRow, IonIcon, IonCard, IonBackButton, IonButtons } from '@ionic/angular/standalone';
+import { PokemonService } from '../../services/pokemon.service';
+import { PokemonDetails } from '../../interfaces/pokemonDetails';
 import { Howl } from 'howler'
-import { StatsCardComponent } from '../stats-card/stats-card.component';
+import { StatsCardComponent } from '../../shared/stats-card/stats-card.component';
+import { addIcons } from 'ionicons'; // Import this
+import { warning, musicalNotes, star } from 'ionicons/icons';
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.page.html',
   styleUrls: ['./details.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCardHeader, IonCardTitle, IonThumbnail, IonItem, IonBadge, IonButton, IonRow, IonIcon, IonCard, StatsCardComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCardHeader, IonCardTitle, IonThumbnail, IonItem, IonBadge, IonButton, IonRow, IonIcon, IonCard, StatsCardComponent, IonBackButton, IonButtons]
 })
 export class DetailsPage {
   private pokemonService = inject(PokemonService);
@@ -23,14 +25,14 @@ export class DetailsPage {
   @Input()
   set id(pokemonId: string) {
     this.pokemonService.getPokemonDetails(pokemonId).subscribe((pokemon) => {
-      console.log(pokemon)
+      // console.log(pokemon)
       this.pokemonData = pokemon;
     })
   }
 
   public player: Howl | null = null;
 
-  constructor() { }
+  constructor() { addIcons({ musicalNotes, star }) }
 
 
   handlePlay() {
@@ -42,6 +44,5 @@ export class DetailsPage {
 
   handleShiny() {
     this.shiny = !this.shiny
-    console.log(this.shiny)
   }
 }

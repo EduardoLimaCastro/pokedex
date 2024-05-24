@@ -1,8 +1,17 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
     <ion-title class="ion-text-center">
       Details
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="start" name="star" color="electric"></ion-icon>
+        Favorite
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -15,7 +24,7 @@
       <img [src]="pokemonImageBaseUrl + pokemonData.id + '.png'" />
     </ion-thumbnail>
     <ion-row class="ion-justify-content-center">
-      <ion-button shape="round" (click)="handlePlay()">Cry</ion-button>
+      <ion-button shape="round" (click)="handlePlay()"><ion-icon name="musical-notes"></ion-icon>Cry</ion-button>
     </ion-row>
   </ion-item>
   <ion-row class="ion-justify-content-center">
@@ -27,7 +36,7 @@
       <img [src]="pokemonImageBaseUrl +'shiny/'+ pokemonData.id + '.png'" />
     </ion-thumbnail>
     <ion-row class="ion-justify-content-center">
-      <ion-button shape="round" (click)="handlePlay()">Cry</ion-button>
+      <ion-button shape="round" (click)="handlePlay()"><ion-icon name="musical-notes"></ion-icon>Cry</ion-button>
     </ion-row>
   </ion-item>
   <ion-row class="ion-justify-content-center">
@@ -40,17 +49,10 @@
       <img [src]="pokemonImageBaseUrl + pokemonData.id + '.png'" />
     </ion-thumbnail>
   </ion-item>
-  <ion-card>
-  </ion-card>
-
   }
   <ion-card-header>
     <ion-card-title class="ion-text-center ">Name: {{pokemonData.species.name}}</ion-card-title>
   </ion-card-header>
   <app-stats-card [pokemonName]="pokemonData"></app-stats-card>
   }
-
-
-
-
 </ion-content>

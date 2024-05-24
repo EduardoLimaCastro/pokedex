@@ -4,6 +4,7 @@ import { PokemonDetails } from '../interfaces/pokemonDetails';
 import { Observable, delay, map } from 'rxjs';
 import { PokemonResult } from '../interfaces/pokemon';
 import { PokemonSpecies } from '../interfaces/pokemonSpecies';
+import { PokemonEvolution } from '../interfaces/pokemonEvolution';
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +22,15 @@ export class PokemonService {
   }
 
   getPokemonDetails(pokemonName: string): Observable<PokemonDetails> {
-    return this.http.get<PokemonDetails>(`${this.apiUrl}/pokemon/${pokemonName}`);
+    return this.http.get<PokemonDetails>(`${this.apiUrl}pokemon/${pokemonName}`);
   }
 
   getPokemonSpecies(pokemonName: string): Observable<PokemonSpecies> {
-    return this.http.get<PokemonSpecies>(`${this.apiUrl}/pokemon-species/${pokemonName}`);
+    return this.http.get<PokemonSpecies>(`${this.apiUrl}pokemon-species/${pokemonName}`);
+  }
+
+  getPokemonEvolutionChain(pokemonChain: string): Observable<PokemonEvolution> {
+    return this.http.get<PokemonEvolution>(pokemonChain)
   }
 
 }
