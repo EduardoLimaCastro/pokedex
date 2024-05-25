@@ -79,7 +79,6 @@ export class HomePage {
   }
 
   loadPokemonData(names: string[]) {
-    // console.log(names)
     names.forEach((name) => {
       this.pokemonService.getPokemonDetails(name).subscribe({
         next: (pokemon) => {

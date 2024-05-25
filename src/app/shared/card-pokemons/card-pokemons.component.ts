@@ -31,10 +31,6 @@ export class CardPokemonsComponent {
 
   constructor() {
     addIcons({ star });
-    const storedClickedPokemons = localStorage.getItem('favorites');
-    if (storedClickedPokemons) {
-      this.clickedPokemons = JSON.parse(storedClickedPokemons);
-    }
   }
 
   onPokemonChange(value: any) {
@@ -94,19 +90,35 @@ export class CardPokemonsComponent {
 
   handleIconClick(event: Event) {
     event.stopPropagation();
-    const index = this.clickedPokemons.indexOf(this.pokemonData.name);
-    if (index !== -1) {
-      this.clickedPokemons.splice(index, 1);
-    } else {
-      this.clickedPokemons.push(this.pokemonData.name);
-    }
-    this.saveClickedPokemons();
+    this.saveClickedPokemons(this.pokemonData.name);
     this.isClicked = !this.isClicked
   }
 
-  saveClickedPokemons() {
-    // Save clicked pokemons list to local storage
-    localStorage.setItem('favorites', JSON.stringify(this.clickedPokemons));
+  saveClickedPokemons(name: string) {
+    console.log(name)
+    let favoritesStorage = localStorage.getItem('favorites')
+    let favorites: string[] = []
+    if (favoritesStorage) {
+      favorites = JSON.parse(favoritesStorage)
+    }
+    console.log(favorites)
+    if (favorites?.includes(name)) {
+      console.log('include');
+      const index = favorites.indexOf(name);
+      console.log(index)
+      favorites.splice(index, 1);
+      console.log(favorites)
+      localStorage.setItem('favorites', JSON.stringify(favorites))
+    } else {
+      favorites.push(name);
+      console.log(favorites)
+      localStorage.setItem('favorites', JSON.stringify(favorites))
+    }
+    // if (favorites?.includes(name[0])) {
+    //   console.log('first')
+    // } else {
+    //   console.log('new')
+    //   favorites.push(name)
+    // }
   }
-
 }
