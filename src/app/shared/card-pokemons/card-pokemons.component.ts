@@ -1,9 +1,10 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, NgZone, inject } from '@angular/core';
 import { IonContent, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCard, IonCardContent, IonItem, IonBadge, IonIcon, IonButton } from '@ionic/angular/standalone';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { RouterModule } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { star } from 'ionicons/icons';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-card-pokemons',
@@ -19,6 +20,7 @@ export class CardPokemonsComponent {
   private _pokemonData: any = []
   public isClicked: boolean = false;
   public clickedPokemons: string[] = []
+  public cdr = inject(ChangeDetectorRef);
 
   @Input() set pokemonData(value: any) {
     this._pokemonData = value
@@ -29,16 +31,36 @@ export class CardPokemonsComponent {
     return this._pokemonData;
   }
 
-  constructor() {
+  constructor(private ngZone: NgZone) {
     addIcons({ star });
+    this.isClicked = false
+  }
+
+  ionViewWillEnter() {
+    this.updateIsClicked();
+    console.log('entramos')
+    this.ngZone.run(() => {
+      this.updateIsClicked();
+    });
+  }
+
+  updateIsClicked() {
+    const favoritePokemon: string[] = JSON.parse(localStorage.getItem('favorites') || '[]');
+    const pokemonName = this.pokemonData.name; // Replace 'Pikachu' with the actual Pokémon name you want to track
+    this.isClicked = favoritePokemon.includes(pokemonName);
+    console.log(this.isClicked)
   }
 
   onPokemonChange(value: any) {
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]')
+    // console.log(favorites)
     const isFavorite = favorites.includes(value)
     if (isFavorite) {
       this.isClicked = true
+      console.log('olha só', this.pokemonData.name)
     }
+    this.updateIsClicked();
+    // console.log(favorites)
   }
 
   getBadgeColor(type: string): string {
@@ -95,23 +117,23 @@ export class CardPokemonsComponent {
   }
 
   saveClickedPokemons(name: string) {
-    console.log(name)
+    // console.log(name)
     let favoritesStorage = localStorage.getItem('favorites')
     let favorites: string[] = []
     if (favoritesStorage) {
       favorites = JSON.parse(favoritesStorage)
     }
-    console.log(favorites)
+    // console.log(favorites)
     if (favorites?.includes(name)) {
-      console.log('include');
+      // console.log('include');
       const index = favorites.indexOf(name);
-      console.log(index)
+      // console.log(index)
       favorites.splice(index, 1);
-      console.log(favorites)
+      // console.log(favorites)
       localStorage.setItem('favorites', JSON.stringify(favorites))
     } else {
       favorites.push(name);
-      console.log(favorites)
+      // console.log(favorites)
       localStorage.setItem('favorites', JSON.stringify(favorites))
     }
     // if (favorites?.includes(name[0])) {

@@ -10,6 +10,7 @@ import { addIcons } from 'ionicons';
 import { musicalNotes, star, trendingUp } from 'ionicons/icons';
 import { PokemonSpecies } from 'src/app/interfaces/pokemonSpecies';
 import { PokemonEvolutionCardComponent } from 'src/app/shared/pokemon-evolution-card/pokemon-evolution-card.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-details',
@@ -27,6 +28,7 @@ export class DetailsPage {
   public shiny = false;
   public isClicked: boolean = false;
   public clickedPokemons: string[] = []
+  public router = inject(Router);
 
   @Input()
   set id(pokemonId: string) {
@@ -133,6 +135,12 @@ export class DetailsPage {
     if (isFavorite) {
       this.isClicked = true
     }
+  }
+  backPage() {
+    this.router.navigate(['/home'])
+      .then(() => {
+        window.location.reload()
+      })
   }
 
 }

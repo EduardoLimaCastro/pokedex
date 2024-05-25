@@ -10,7 +10,7 @@
       POKÉDEX
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button [routerLink]="['/favorites']">
+      <ion-button (click)="favoritesPage()">
         <ion-icon slot="start" name="list-outline"></ion-icon>
         List of Favorite Pokemons
       </ion-button>
@@ -23,7 +23,6 @@
     <ion-card-header>
       <ion-card-title class="ion-text-center">POKÉMONS LIST</ion-card-title>
     </ion-card-header>
-
     <ion-card-content>
       <ion-list>
         <div class="wrapper-home">

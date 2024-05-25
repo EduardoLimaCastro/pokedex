@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, InfiniteScrollCustomEvent, IonAvatar, IonItem, IonSkeletonText, IonList, IonAlert, IonLabel, IonButton, IonBadge, IonRow, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonThumbnail, IonIcon, IonButtons } from '@ionic/angular/standalone';
 import { PokemonService } from '../../services/pokemon.service';
 import { catchError, finalize } from 'rxjs';
@@ -8,6 +8,9 @@ import { RouterModule } from '@angular/router';
 import { CardPokemonsComponent } from '../../shared/card-pokemons/card-pokemons.component'
 import { addIcons } from 'ionicons';
 import { listOutline, list } from 'ionicons/icons';
+import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-home',
@@ -27,6 +30,8 @@ export class HomePage {
   public pokemonData: PokemonDetails[] = []
   public pokemonService = inject(PokemonService)
   public offset = 0;
+  public router = inject(Router);
+  public navCtrl = inject(NavController)
 
   get currentPage(): number {
     return this._currentPage;
@@ -41,9 +46,16 @@ export class HomePage {
   constructor() {
     this.loadPokemons()
     addIcons({ listOutline, list })
+    this.checkFacorites()
+  }
+
+  checkFacorites() {
+    const favorites = localStorage.getItem('favorites');
+    console.log(favorites)
   }
 
   loadPokemons(event?: InfiniteScrollCustomEvent) {
+    console.log('first')
     this.error = null;
 
     if (!event) {
@@ -109,5 +121,7 @@ export class HomePage {
     // console.log(this.currentPage)
   }
 
-
+  favoritesPage() {
+    this.router.navigate(['/favorites'])
+  }
 }
