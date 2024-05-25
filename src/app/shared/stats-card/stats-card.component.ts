@@ -6,6 +6,7 @@ import { warning, musicalNotes } from 'ionicons/icons';
 import { PokemonService } from '../../services/pokemon.service';
 import { PokemonSpecies } from '../../interfaces/pokemonSpecies';
 import { switchMap } from 'rxjs/operators';
+import { RemoveFormFeedPipe } from '../pipes/remove-form-feed.pipe'
 import { PokemonEvolution } from '../../interfaces/pokemonEvolution';
 import { PokemonCardComponent } from '../pokemon-card/pokemon-card.component';
 
@@ -14,7 +15,7 @@ import { PokemonCardComponent } from '../pokemon-card/pokemon-card.component';
   templateUrl: './stats-card.component.html',
   styleUrls: ['./stats-card.component.scss'],
   standalone: true,
-  imports: [IonCard, IonProgressBar, IonRow, IonCardHeader, IonCardTitle, IonCardContent, IonText, IonIcon, PokemonCardComponent]
+  imports: [IonCard, IonProgressBar, IonRow, IonCardHeader, IonCardTitle, IonCardContent, IonText, IonIcon, PokemonCardComponent, RemoveFormFeedPipe]
 })
 export class StatsCardComponent {
   public progress = 0.5;
@@ -35,6 +36,7 @@ export class StatsCardComponent {
   }
 
   onPokemonNameChange(newName: any): void {
+    // console.log(newName)
     this.getPokemonSpecies(newName);
   }
 
@@ -43,38 +45,10 @@ export class StatsCardComponent {
 
   getPokemonSpecies(pokemonName: any): void {
     // console.log('Getting species for:', pokemonName);
-    this.pokemonService.getPokemonSpecies(pokemonName.name).pipe(
-      switchMap(pokemon => {
+    this.pokemonService.getPokemonSpecies(pokemonName.name).subscribe(
+      (pokemon) => {
         // console.log('Pokemon species:', pokemon);
         this.pokemonSpecies = pokemon;
-        return this.pokemonService.getPokemonEvolutionChain(pokemon.evolution_chain.url);
       })
-    ).subscribe({
-      next: (pokemonChain) => {
-        // console.log(pokemonChain);
-        this.pokemonEvolution = pokemonChain
-        this.speciesNames = this.getAllSpeciesNames(this.pokemonEvolution.chain);
-        // console.log(this.speciesNames)
-      },
-      error: (err) => {
-        console.error('Error loading Pokémon evolution chain:', err);
-      }
-    });
   }
-
-  getAllSpeciesNames(chain: any,) {
-    let names: string[] = [];
-
-    if (chain && chain.species && chain.species.name) {
-      names.push(chain.species.name);
-    }
-    if (chain && chain.evolves_to !== null) {
-      for (let i = 0; i < chain.evolves_to.length; i++) {
-        const subNames = this.getAllSpeciesNames(chain.evolves_to[i]);
-        names = names.concat(subNames);
-      }
-    }
-    return names;
-  }
-
 }

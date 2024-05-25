@@ -36,3 +36,10 @@
 ion-label {
   text-transform: uppercase;
 }
+
+.wrapper-home {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}

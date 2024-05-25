@@ -1,8 +1,20 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button color="primary">
+        <ion-icon slot="start" name="list-outline"></ion-icon>
+        List of Favorite Pokemons
+      </ion-button>
+    </ion-buttons>
     <ion-title class="ion-text-center">
       POKÉDEX
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/favorites']">
+        <ion-icon slot="start" name="list-outline"></ion-icon>
+        List of Favorite Pokemons
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -14,33 +26,29 @@
 
     <ion-card-content>
       <ion-list>
-        @for (pokemon of pokemonData; track pokemon.id){
-        <ion-item lines="none" class="ion-padding-bottom" button [routerLink]="['/details',pokemon.id]">
-          <ion-thumbnail slot="start">
-            <img [src]="pokemonImageBaseUrl + pokemon.id + '.gif'" />
-          </ion-thumbnail>
-          <ion-label class="ion-text-center">
-            {{pokemon.name}}
-          </ion-label>
-          @for (type of pokemon.types; track type.slot){
-          <ion-badge [color]="getBadgeColor(type.type.name)">{{ type.type.name }}</ion-badge>
+        <div class="wrapper-home">
+          @for (poke of pokemonData; track poke.id){
+          <app-card-pokemons [pokemonData]="poke"></app-card-pokemons>
+          }@empty {
+          @if (!isLoading) {
+          <ion-item lines="none" class="ion-padding-bottom">
+            <ion-label class="ion-text-center">Nenhum pokemon encontrado</ion-label>
+          </ion-item>
           }
-        </ion-item>
-        } @empty {
-        @if (!isLoading) {
-        <ion-item lines="none" class="ion-padding-bottom">
-          <ion-label class="ion-text-center">Nenhum pokemon encontrado</ion-label>
-        </ion-item>
-        }
-        }
+          }
+        </div>
       </ion-list>
     </ion-card-content>
   </ion-card>
+  <ion-list>
+
+  </ion-list>
 
   <ion-row class="ion-justify-content-center">
     <ion-button shape="round" (click)="paginaAnterior()" [disabled]="currentPage === 1">Página anterior</ion-button>
     <p class="ion-padding-start ion-padding-end">Página {{currentPage}}</p>
     <ion-button shape="round" (click)="proximaPagina()">Próxima página</ion-button>
   </ion-row>
+
 
 </ion-content>

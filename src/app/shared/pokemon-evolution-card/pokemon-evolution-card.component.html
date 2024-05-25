@@ -1,0 +1,12 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title class="ion-text-center">EVOLUTION</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <div class="wrapper-evolution">
+      @for (pokemon of pokemonsDetails; track pokemon.name){
+      <app-pokemon-card [pokemon]="pokemon" [pokemonEvolutions]="pokemonData"></app-pokemon-card>
+      }
+    </div>
+  </ion-card-content>
+</ion-card>

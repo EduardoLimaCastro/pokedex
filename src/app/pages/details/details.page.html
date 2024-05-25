@@ -7,8 +7,8 @@
       Details
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon slot="start" name="star" color="electric"></ion-icon>
+      <ion-button [color]="isClicked ? 'electric' : 'light'" (click)="toggleClick(pokemonData?.name)">
+        <ion-icon slot="start" name="star" [color]="isClicked ? 'electric' : 'light'"></ion-icon>
         Favorite
       </ion-button>
     </ion-buttons>
@@ -20,7 +20,7 @@
   @if (pokemonData.sprites.other['official-artwork'].front_shiny){
   @if(!shiny){
   <ion-item>
-    <ion-thumbnail class="content-center">
+    <ion-thumbnail class="content-center" style="height: 300px; width: 300px;">
       <img [src]="pokemonImageBaseUrl + pokemonData.id + '.png'" />
     </ion-thumbnail>
     <ion-row class="ion-justify-content-center">
@@ -32,7 +32,7 @@
   </ion-row>
   } @else{
   <ion-item>
-    <ion-thumbnail class="content-center">
+    <ion-thumbnail class="content-center" style="height: 300px; width: 300px;">
       <img [src]="pokemonImageBaseUrl +'shiny/'+ pokemonData.id + '.png'" />
     </ion-thumbnail>
     <ion-row class="ion-justify-content-center">
@@ -45,14 +45,16 @@
   }
   } @else {
   <ion-item>
-    <ion-thumbnail class="content-center">
+    <ion-thumbnail class="content-center" style="height: 300px; width: 300px;">
       <img [src]="pokemonImageBaseUrl + pokemonData.id + '.png'" />
     </ion-thumbnail>
   </ion-item>
   }
   <ion-card-header>
-    <ion-card-title class="ion-text-center ">Name: {{pokemonData.species.name}}</ion-card-title>
+    <ion-card-title class="ion-text-center " style="font-size: 30px;">Name:
+      {{pokemonData.species.name}}</ion-card-title>
   </ion-card-header>
   <app-stats-card [pokemonName]="pokemonData"></app-stats-card>
+  <app-pokemon-evolution-card [pokemonData]="pokemonEvolution"></app-pokemon-evolution-card>
   }
 </ion-content>

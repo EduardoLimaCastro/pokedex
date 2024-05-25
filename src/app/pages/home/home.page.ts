@@ -1,17 +1,20 @@
 import { Component, inject } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, InfiniteScrollCustomEvent, IonAvatar, IonItem, IonSkeletonText, IonList, IonAlert, IonLabel, IonButton, IonBadge, IonRow, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonThumbnail } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, InfiniteScrollCustomEvent, IonAvatar, IonItem, IonSkeletonText, IonList, IonAlert, IonLabel, IonButton, IonBadge, IonRow, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonThumbnail, IonIcon, IonButtons } from '@ionic/angular/standalone';
 import { PokemonService } from '../../services/pokemon.service';
 import { catchError, finalize } from 'rxjs';
 import { Pokemon } from '../../interfaces/pokemon';
 import { PokemonDetails } from '../../interfaces/pokemonDetails';
 import { RouterModule } from '@angular/router';
+import { CardPokemonsComponent } from '../../shared/card-pokemons/card-pokemons.component'
+import { addIcons } from 'ionicons';
+import { listOutline, list } from 'ionicons/icons';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonAvatar, IonItem, IonSkeletonText, IonList, IonAlert, IonLabel, IonButton, RouterModule, IonBadge, IonRow, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonThumbnail],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonAvatar, IonItem, IonSkeletonText, IonList, IonAlert, IonLabel, IonButton, RouterModule, IonBadge, IonRow, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonThumbnail, IonIcon, CardPokemonsComponent, IonButtons],
 })
 export class HomePage {
 
@@ -22,9 +25,6 @@ export class HomePage {
   public pokemons: Pokemon[] = [];
   public dummyArray = new Array(5);
   public pokemonData: PokemonDetails[] = []
-  public pokemonImageBaseUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/'
-  public next = ''
-  public previous = ''
   public pokemonService = inject(PokemonService)
   public offset = 0;
 
@@ -40,9 +40,8 @@ export class HomePage {
 
   constructor() {
     this.loadPokemons()
+    addIcons({ listOutline, list })
   }
-
-
 
   loadPokemons(event?: InfiniteScrollCustomEvent) {
     this.error = null;
@@ -67,13 +66,6 @@ export class HomePage {
     ).subscribe({
       next: (res) => {
         // console.log(res.results)
-        if (res.previous) {
-          this.previous = res.previous;
-        }
-        if (res.next) {
-          this.next = res.next;
-        }
-
         res.results.forEach((item) => {
           this.names.push(item.name);
         });
@@ -85,8 +77,6 @@ export class HomePage {
       }
     })
   }
-
-
 
   loadPokemonData(names: string[]) {
     // console.log(names)
@@ -121,51 +111,4 @@ export class HomePage {
   }
 
 
-  //---GET THE BADGE COLOR ACCORDINGLY TO THE POKEMON TYPE---
-  getBadgeColor(type: string): string {
-    switch (type) {
-      case 'normal':
-        return 'normal';
-      case 'fighting':
-        return 'fighting';
-      case 'flying':
-        return 'flying';
-      case 'poison':
-        return 'poison';
-      case 'ground':
-        return 'ground';
-      case 'rock':
-        return 'rock';
-      case 'bug':
-        return 'bug';
-      case 'ghost':
-        return 'ghost';
-      case 'steel':
-        return 'steel';
-      case 'fire':
-        return 'fire';
-      case 'water':
-        return 'water';
-      case 'grass':
-        return 'grass';
-      case 'electric':
-        return 'electric';
-      case 'psychic':
-        return 'psychic';
-      case 'ice':
-        return 'ice';
-      case 'dragon':
-        return 'dragon';
-      case 'dark':
-        return 'dark';
-      case 'fairy':
-        return 'fairy';
-      case 'stellar':
-        return 'stellar';
-      case 'unknown':
-        return 'unknown';
-      default:
-        return 'primary';
-    }
-  }
 }
