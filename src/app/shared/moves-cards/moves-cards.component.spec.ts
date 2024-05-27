@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MovesCardsComponent } from './moves-cards.component';
 
 describe('MovesCardsComponent', () => {
@@ -9,8 +9,7 @@ describe('MovesCardsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ MovesCardsComponent ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(), HttpClientTestingModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(MovesCardsComponent);

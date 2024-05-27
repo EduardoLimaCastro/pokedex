@@ -5,7 +5,6 @@ import { warning, musicalNotes } from 'ionicons/icons';
 
 import { PokemonService } from '../../services/pokemon.service';
 import { PokemonSpecies } from '../../interfaces/pokemonSpecies';
-import { switchMap } from 'rxjs/operators';
 import { RemoveFormFeedPipe } from '../pipes/remove-form-feed.pipe'
 import { PokemonEvolution } from '../../interfaces/pokemonEvolution';
 import { PokemonCardComponent } from '../pokemon-card/pokemon-card.component';
@@ -48,27 +47,15 @@ export class StatsCardComponent {
 
   constructor() { addIcons({ warning, musicalNotes }) }
 
-  // getPokemonData(name: string) {
-  //   console.log(name)
-  //   this.pokemonService.getPokemonDetails(name).subscribe({
-  //     next: (pokemon) => {
-  //       this.pokemonData.push(pokemon);
-  //       console.log(this.pokemonData)
-  //     },
-  //     error: (err) => {
-  //       console.error('Error loading Pokémon details:', err);
-  //     }
-  //   })
-  // }
-
-
   getPokemonSpecies(pokemonName: any): void {
     // console.log('Getting species for:', pokemonName);
-    this.pokemonService.getPokemonSpecies(pokemonName.name).subscribe(
-      (pokemon) => {
-        // console.log('Pokemon species:', pokemon);
-        this.pokemonSpecies = pokemon;
-      })
+    if (pokemonName) {
+      this.pokemonService.getPokemonSpecies(pokemonName.name).subscribe(
+        (pokemon) => {
+          // console.log('Pokemon species:', pokemon);
+          this.pokemonSpecies = pokemon;
+        })
+    }
   }
 
   getBadgeColor(type: string): string {

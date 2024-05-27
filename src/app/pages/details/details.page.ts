@@ -34,20 +34,22 @@ export class DetailsPage {
 
   @Input()
   set id(pokemonId: string) {
-    this.pokemonService.getPokemonDetails(pokemonId).subscribe((pokemon) => {
-      // console.log(pokemon)
-      this.pokemonData = pokemon;
-    })
-    this.pokemonService.getPokemonSpecies(pokemonId).subscribe((pokemon) => {
-      // console.log(pokemon)
-      this.pokemonSpecies = pokemon;
-      this.pokemonService.getPokemonEvolutionChain(pokemon.evolution_chain.url).subscribe((poke) => {
-        // console.log(poke)
-        this.pokemonEvolution = this.getAllSpeciesNames(poke.chain)
-        // console.log(this.pokemonEvolution)
+    if (pokemonId) {
+      this.pokemonService.getPokemonDetails(pokemonId).subscribe((pokemon) => {
+        // console.log(pokemon)
+        this.pokemonData = pokemon;
       })
-    })
-    this.checkIfFavorite(pokemonId);
+      this.pokemonService.getPokemonSpecies(pokemonId).subscribe((pokemon) => {
+        // console.log(pokemon)
+        this.pokemonSpecies = pokemon;
+        this.pokemonService.getPokemonEvolutionChain(pokemon.evolution_chain.url).subscribe((poke) => {
+          // console.log(poke)
+          this.pokemonEvolution = this.getAllSpeciesNames(poke.chain)
+          // console.log(this.pokemonEvolution)
+        })
+      })
+      this.checkIfFavorite(pokemonId);
+    }
   }
 
   public player: Howl | null = null;
