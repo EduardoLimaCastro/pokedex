@@ -35,17 +35,19 @@ export class PokemonEvolutionCardComponent {
   }
 
   getPokemonDetails(pokemonsArray: PokemonEvolutions[]) {
-    pokemonsArray.forEach((name) => {
-      this.pokemonService.getPokemonDetails(name.name).subscribe({
-        next: (pokemon) => {
-          this.pokemonsDetails.push(pokemon);
-          // console.log(pokemon)
-        },
-        error: (err) => {
-          console.error('Error loading Pokémon details:', err);
-        }
+    if (pokemonsArray) {
+      pokemonsArray.forEach((name) => {
+        this.pokemonService.getPokemonDetails(name.name).subscribe({
+          next: (pokemon) => {
+            this.pokemonsDetails.push(pokemon);
+            // console.log(pokemon)
+          },
+          error: (err) => {
+            console.error('Error loading Pokémon details:', err);
+          }
+        });
       });
-    });
+    }
   }
 
 }

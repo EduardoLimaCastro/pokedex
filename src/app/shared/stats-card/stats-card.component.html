@@ -1,12 +1,18 @@
+@if (pokemonSpecies){
 <div class="container">
   <ion-card>
     <ion-card-header>
       <ion-card-title class="ion-text-center">Details</ion-card-title>
     </ion-card-header>
     <ion-card-content>
+      @if (pokemonSpecies && pokemonSpecies.flavor_text_entries && pokemonSpecies.flavor_text_entries.length !==
+      null) {
       <ion-text>
-        <h1 class="text">{{ pokemonSpecies.flavor_text_entries[0].flavor_text | removeFormFeed }}</h1>
+        <h1 style="padding-left: 6px;
+          padding-right: 6px;
+          text-align: center;">{{ pokemonSpecies.flavor_text_entries[0].flavor_text | removeFormFeed }}</h1>
       </ion-text>
+      }
     </ion-card-content>
   </ion-card>
   <ion-card>
@@ -14,6 +20,8 @@
       <ion-card-title class="ion-text-center">STATS</ion-card-title>
     </ion-card-header>
     <ion-card-content>
+      @if (pokemonName){
+
       @for (pokemon of pokemonName.stats; track pokemon.id){
       <ion-row class="ion-padding-top" style="display: flex; align-items: center;">
         <ion-text style="flex:1">
@@ -26,6 +34,8 @@
         </ion-text>
       </ion-row>
       }
+      }
     </ion-card-content>
   </ion-card>
 </div>
+}
