@@ -1,0 +1,46 @@
+<ion-card style="height: auto;width: 250px;display: flex; flex-direction: column; justify-content: space-between; "
+  [color]="getBadgeColor(type.name)">
+  <ion-card-header>
+    <ion-card-title style="text-align: center; color: white;">{{type.name}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <div class="wrapper-group-cards">
+      <p style="font-size: 20px;">Double damage from: </p>
+      <div class="wrapper-damage">
+        @for (damage of type.damage_relations.double_damage_from; track damage.name){
+        <ion-badge color="light">{{damage.name}}</ion-badge>
+        }
+      </div>
+      <p style="font-size: 20px;">half damage from: </p>
+      <div class="wrapper-damage">
+        @for (damage of type.damage_relations.half_damage_from; track damage.name){
+        <ion-badge color="light">{{damage.name}}</ion-badge>
+        }
+      </div>
+      <p style="font-size: 20px;">No damage from: </p>
+      <div class="wrapper-damage">
+        @for (damage of type.damage_relations.no_damage_from; track damage.name){
+        <ion-badge color="light">{{damage.name}}</ion-badge>
+        }
+      </div>
+      <p style="font-size: 20px;">Double damage to: </p>
+      <div class="wrapper-damage">
+        @for (damage of type.damage_relations.double_damage_to; track damage.name){
+        <ion-badge color="light">{{damage.name}}</ion-badge>
+        }
+      </div>
+      <p style="font-size: 20px;">Half damage to: </p>
+      <div class="wrapper-damage">
+        @for (damage of type.damage_relations.half_damage_to; track damage.name){
+        <ion-badge color="light">{{damage.name}}</ion-badge>
+        }
+      </div>
+      <p style="font-size: 20px;">No damage to: </p>
+      <div class="wrapper-damage">
+        @for (damage of type.damage_relations.no_damage_to; track damage.name){
+        <ion-badge color="light">{{damage.name}}</ion-badge>
+        }
+      </div>
+    </div>
+  </ion-card-content>
+</ion-card>

@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="backPage()"><ion-icon></ion-icon>Back</ion-button>>
+    </ion-buttons>
+    <ion-title class="ion-text-center">List of favorite Pokémons</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">FAVORITE POKÉMONS LIST</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <div class="wrapper-favorites ">
+          @for (poke of pokemonData; track poke.id){
+          <app-card-pokemons [pokemonData]="poke"></app-card-pokemons>
+          }@empty {
+          @if (!isLoading) {
+          <ion-item lines="none" class="ion-padding-bottom">
+            <ion-label class="ion-text-center">No Favorite Pokémons found</ion-label>
+          </ion-item>
+          }
+          }
+        </div>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

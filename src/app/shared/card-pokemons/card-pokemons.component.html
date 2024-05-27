@@ -1,0 +1,18 @@
+<ion-item lines="none" class="ion-padding-bottom" button [routerLink]="['/details',pokemonData.name]">
+  <ion-card style="height: 200px;width: 200px;display: flex; flex-direction: column; justify-content: space-between;">
+    <ion-button
+      style="background-color: transparent; position: absolute; top: 5px; right: 5px;height: 45px; width: 45px;"
+      (click)="handleIconClick($event)" fill="clear">
+      <ion-icon name="star" [color]="isClicked ? 'electric' : 'steel'" style="height: 45px; width: 45px;"></ion-icon>
+    </ion-button>
+    <img style="padding-top: 5px; width: 100px; height: 100px; display: block; margin: 0 auto;"
+      [src]="pokemonImageBaseUrl + pokemonData.id + '.png'" />
+    <ion-card-title style="text-align: center; padding-top: 2px; font-size: 24px;">{{pokemonData.name}}</ion-card-title>
+    <div class="wrapper-badges">
+      @for (type of pokemonData.types; track type.slot){
+      <ion-badge style="color: white; font-size: 18px;" [color]="getBadgeColor(type.type.name)">{{ type.type.name
+        }}</ion-badge>
+      }
+    </div>
+  </ion-card>
+</ion-item>

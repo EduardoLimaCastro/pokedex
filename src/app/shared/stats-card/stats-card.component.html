@@ -1,0 +1,31 @@
+<div class="container">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">Details</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-text>
+        <h1 class="text">{{ pokemonSpecies.flavor_text_entries[0].flavor_text | removeFormFeed }}</h1>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">STATS</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      @for (pokemon of pokemonName.stats; track pokemon.id){
+      <ion-row class="ion-padding-top" style="display: flex; align-items: center;">
+        <ion-text style="flex:1">
+          <h2 style="font-size: 20px;">{{pokemon.stat.name.toUpperCase()}}</h2>
+        </ion-text>
+        <ion-progress-bar [value]="pokemon.base_stat / 100" style="flex:3"
+          [color]="getBadgeColor(pokemonData.types[0].type.name)"></ion-progress-bar>
+        <ion-text style="flex:1; text-align: end;">
+          <h2 style="font-size: 20px;">{{pokemon.base_stat}}</h2>
+        </ion-text>
+      </ion-row>
+      }
+    </ion-card-content>
+  </ion-card>
+</div>
