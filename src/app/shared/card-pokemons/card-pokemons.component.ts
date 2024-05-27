@@ -38,7 +38,6 @@ export class CardPokemonsComponent {
 
   ionViewWillEnter() {
     this.updateIsClicked();
-    console.log('entramos')
     this.ngZone.run(() => {
       this.updateIsClicked();
     });
@@ -48,7 +47,7 @@ export class CardPokemonsComponent {
     const favoritePokemon: string[] = JSON.parse(localStorage.getItem('favorites') || '[]');
     const pokemonName = this.pokemonData.name; // Replace 'Pikachu' with the actual Pokémon name you want to track
     this.isClicked = favoritePokemon.includes(pokemonName);
-    console.log(this.isClicked)
+    // console.log(this.isClicked)
   }
 
   onPokemonChange(value: any) {
@@ -57,7 +56,6 @@ export class CardPokemonsComponent {
     const isFavorite = favorites.includes(value)
     if (isFavorite) {
       this.isClicked = true
-      console.log('olha só', this.pokemonData.name)
     }
     this.updateIsClicked();
     // console.log(favorites)

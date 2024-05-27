@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonCardHeader, IonCardTitle, IonThumbnail, IonItem, IonBadge, IonButton, IonRow, IonIcon, IonCard, IonBackButton, IonButtons } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonCardHeader, IonCardTitle, IonThumbnail, IonItem, IonBadge, IonButton, IonRow, IonIcon, IonCard, IonBackButton, IonButtons, IonAccordion, IonAccordionGroup, IonLabel } from '@ionic/angular/standalone';
 import { PokemonService } from '../../services/pokemon.service';
 import { PokemonDetails } from '../../interfaces/pokemonDetails';
 import { Howl } from 'howler'
@@ -10,14 +10,16 @@ import { addIcons } from 'ionicons';
 import { musicalNotes, star, trendingUp } from 'ionicons/icons';
 import { PokemonSpecies } from 'src/app/interfaces/pokemonSpecies';
 import { PokemonEvolutionCardComponent } from 'src/app/shared/pokemon-evolution-card/pokemon-evolution-card.component';
+import { MovesListsComponent } from 'src/app/shared/moves-list/moves-lists.component';
 import { Router } from '@angular/router';
+import { GroupDetaisComponent } from 'src/app/shared/group-detais/group-detais.component';
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.page.html',
   styleUrls: ['./details.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCardHeader, IonCardTitle, IonThumbnail, IonItem, IonBadge, IonButton, IonRow, IonIcon, IonCard, StatsCardComponent, IonBackButton, IonButtons, PokemonEvolutionCardComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCardHeader, IonCardTitle, IonThumbnail, IonItem, IonBadge, IonButton, IonRow, IonIcon, IonCard, StatsCardComponent, IonBackButton, IonButtons, PokemonEvolutionCardComponent, IonAccordion, IonAccordionGroup, IonLabel, MovesListsComponent, GroupDetaisComponent]
 })
 export class DetailsPage {
   private pokemonService = inject(PokemonService);
@@ -33,7 +35,7 @@ export class DetailsPage {
   @Input()
   set id(pokemonId: string) {
     this.pokemonService.getPokemonDetails(pokemonId).subscribe((pokemon) => {
-      console.log(pokemon)
+      // console.log(pokemon)
       this.pokemonData = pokemon;
     })
     this.pokemonService.getPokemonSpecies(pokemonId).subscribe((pokemon) => {
@@ -121,7 +123,7 @@ export class DetailsPage {
 
   handleFavoritePokemon(pokemon: string): boolean {
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-    console.log('Favorites: ', favorites)
+    // console.log('Favorites: ', favorites)
     if (favorites.includes(pokemon)) {
       return true
     }

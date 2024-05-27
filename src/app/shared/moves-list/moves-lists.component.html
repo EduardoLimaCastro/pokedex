@@ -1,0 +1,12 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title class="ion-text-center">MOVES</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <div class="wrapper-moves">
+      @for (move of moves; track move.name){
+      <app-moves-cards [move]="move"></app-moves-cards>
+      }
+    </div>
+  </ion-card-content>
+</ion-card>

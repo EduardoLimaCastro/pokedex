@@ -1,0 +1,12 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title class="ion-text-center">GROUP DAMAGE RELATIONS </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <div class="wrapper-group">
+      @for (type of typeData; track type.name){
+      <app-group-card [type]="type"></app-group-card>
+      }
+    </div>
+  </ion-card-content>
+</ion-card>

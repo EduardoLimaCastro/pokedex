@@ -1,17 +1,27 @@
-<ion-card
-  style="height: 300px;width: 200px;display: flex; flex-direction: column; justify-content: space-between; background-color: #F7C548;">
-  <img [src]="pokemonImageBaseUrl + pokemon.id + '.png'" />
-  <ion-card-header>
-    <ion-card-title style="text-align: center;">{{pokemon.name}}</ion-card-title>
-    @for (poke of pokemonEvolutions; track poke.name){
-    @if (pokemon.name === poke.name){
-    @if (poke?.evolutiondetails?.evolution_details[0]?.min_level !== null){
-    <p style="text-align: center; color: black;">Evolution Level:
-      {{poke.evolutiondetails.evolution_details[0].min_level}}</p>
-    } @else {
-    <p style="text-align: center; color: black;">Base Level</p>
-    }
-    }
-    }
-  </ion-card-header>
-</ion-card>
+<ion-item lines="none" class="ion-padding-bottom" button [routerLink]="['/details',pokemon.name]">
+  <ion-card
+    style="height: 300px;width: 200px;display: flex; flex-direction: column; justify-content: space-between; background-color: #F7C548;">
+    <img [src]="pokemonImageBaseUrl + pokemon.id + '.png'" />
+    <ion-card-header>
+      <ion-card-title style="text-align: center;">{{pokemon.name}}</ion-card-title>
+      @for (poke of pokemonEvolutions; track poke.name){
+      @if (pokemon.name === poke.name){
+      @if (poke?.evolutiondetails?.evolution_details[0]?.min_level !== null){
+      <p style="text-align: center; color: black;">Evolution Level:
+        {{poke.evolutiondetails.evolution_details[0].min_level}}</p>
+      } @else {
+      @if (poke?.evolutiondetails?.is_baby === true){
+      <ion-badge style="width: 50px; margin: auto; color: white;" [color]="getBadgeColor('ice')">Baby</ion-badge>
+      }
+      @if (poke?.evolutiondetails?.evolution_details[0]?.item !== null) {
+      <ion-badge style="width:auto; margin: auto;"
+        color="light">{{poke?.evolutiondetails?.evolution_details[0]?.item.name}}</ion-badge>
+      }
+      <p style="text-align: center; color: black;">Base Level</p>
+
+      }
+      }
+      }
+    </ion-card-header>
+  </ion-card>
+</ion-item>

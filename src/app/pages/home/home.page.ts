@@ -51,18 +51,17 @@ export class HomePage {
 
   checkFacorites() {
     const favorites = localStorage.getItem('favorites');
-    console.log(favorites)
+    // console.log(favorites)
   }
 
   loadPokemons(event?: InfiniteScrollCustomEvent) {
-    console.log('first')
     this.error = null;
 
     if (!event) {
       this.isLoading = true;
     }
 
-    this.pokemonService.getPokemons(this.currentPage * 20 - 20, 20 * this.currentPage).pipe(
+    this.pokemonService.getPokemons(this.currentPage * 20 - 20, 20).pipe(
       finalize(() => {
         this.isLoading = false;
         if (event) {
@@ -71,13 +70,12 @@ export class HomePage {
       }),
       catchError((err: any) => {
         console.log(err);
-
         this.error = err.error.status_message;
         return []
       }),
     ).subscribe({
       next: (res) => {
-        // console.log(res.results)
+        console.log(res.results)
         res.results.forEach((item) => {
           this.names.push(item.name);
         });
@@ -118,7 +116,7 @@ export class HomePage {
 
   proximaPagina() {
     this.currentPage++;
-    // console.log(this.currentPage)
+    console.log(this.currentPage)
   }
 
   favoritesPage() {

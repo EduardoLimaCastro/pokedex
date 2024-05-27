@@ -7,3 +7,30 @@
 .but {
     margin: auto;
 }
+
+@media (orientation: landscape) {
+    ion-content {
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin: auto;
+            width: 70%;
+
+            ion-item {}
+
+            ion-row {
+                ion-button {
+                    height: 50px;
+                }
+            }
+
+            ion-card-header {}
+
+        }
+    }
+
+
+}

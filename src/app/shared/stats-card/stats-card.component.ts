@@ -9,6 +9,7 @@ import { switchMap } from 'rxjs/operators';
 import { RemoveFormFeedPipe } from '../pipes/remove-form-feed.pipe'
 import { PokemonEvolution } from '../../interfaces/pokemonEvolution';
 import { PokemonCardComponent } from '../pokemon-card/pokemon-card.component';
+import { PokemonDetails } from 'src/app/interfaces/pokemonDetails';
 
 @Component({
   selector: 'app-stats-card',
@@ -23,6 +24,7 @@ export class StatsCardComponent {
   public pokemonSpecies: PokemonSpecies = {} as PokemonSpecies;
   public pokemonEvolution: PokemonEvolution = {} as PokemonEvolution;
   public speciesNames: string[] = [];
+  public pokemonData: PokemonDetails = {} as PokemonDetails
 
   private _pokemonName: any = {};
 
@@ -37,11 +39,28 @@ export class StatsCardComponent {
 
   onPokemonNameChange(newName: any): void {
     // console.log(newName)
+    this.pokemonData = newName
     this.getPokemonSpecies(newName);
+    // console.log(this.pokemonData.types[0].type.name)
+    // this.getPokemonData(newName);
   }
 
 
   constructor() { addIcons({ warning, musicalNotes }) }
+
+  // getPokemonData(name: string) {
+  //   console.log(name)
+  //   this.pokemonService.getPokemonDetails(name).subscribe({
+  //     next: (pokemon) => {
+  //       this.pokemonData.push(pokemon);
+  //       console.log(this.pokemonData)
+  //     },
+  //     error: (err) => {
+  //       console.error('Error loading Pokémon details:', err);
+  //     }
+  //   })
+  // }
+
 
   getPokemonSpecies(pokemonName: any): void {
     // console.log('Getting species for:', pokemonName);
@@ -51,4 +70,52 @@ export class StatsCardComponent {
         this.pokemonSpecies = pokemon;
       })
   }
+
+  getBadgeColor(type: string): string {
+    switch (type) {
+      case 'normal':
+        return 'normal';
+      case 'fighting':
+        return 'fighting';
+      case 'flying':
+        return 'flying';
+      case 'poison':
+        return 'poison';
+      case 'ground':
+        return 'ground';
+      case 'rock':
+        return 'rock';
+      case 'bug':
+        return 'bug';
+      case 'ghost':
+        return 'ghost';
+      case 'steel':
+        return 'steel';
+      case 'fire':
+        return 'fire';
+      case 'water':
+        return 'water';
+      case 'grass':
+        return 'grass';
+      case 'electric':
+        return 'electric';
+      case 'psychic':
+        return 'psychic';
+      case 'ice':
+        return 'ice';
+      case 'dragon':
+        return 'dragon';
+      case 'dark':
+        return 'dark';
+      case 'fairy':
+        return 'fairy';
+      case 'stellar':
+        return 'stellar';
+      case 'unknown':
+        return 'unknown';
+      default:
+        return 'primary';
+    }
+  }
+
 }

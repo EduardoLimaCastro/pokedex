@@ -1,16 +1,17 @@
 import { Component, Input, inject } from '@angular/core';
 import { PokemonDetails } from 'src/app/interfaces/pokemonDetails';
 import { PokemonService } from 'src/app/services/pokemon.service';
-import { IonContent, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCard, IonCardContent } from '@ionic/angular/standalone';
+import { IonContent, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCard, IonCardContent, IonItem } from '@ionic/angular/standalone';
 import { PokemonEvolutions } from 'src/app/interfaces/pokemonEvolutions';
 import { PokemonCardComponent } from '../pokemon-card/pokemon-card.component';
+
 
 @Component({
   selector: 'app-pokemon-evolution-card',
   templateUrl: './pokemon-evolution-card.component.html',
   styleUrls: ['./pokemon-evolution-card.component.scss'],
   standalone: true,
-  imports: [IonContent, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCard, IonCardContent, PokemonCardComponent],
+  imports: [IonContent, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCard, IonCardContent, PokemonCardComponent, IonItem],
 })
 export class PokemonEvolutionCardComponent {
   public pokemonService = inject(PokemonService);

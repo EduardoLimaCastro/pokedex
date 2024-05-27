@@ -17,44 +17,76 @@
 
 <ion-content>
   @if (pokemonData){
-  @if (pokemonData.sprites.other['official-artwork'].front_shiny){
-  @if(!shiny){
-  <ion-item>
-    <ion-thumbnail class="content-center" style="height: 300px; width: 300px;">
-      <img [src]="pokemonImageBaseUrl + pokemonData.id + '.png'" />
-    </ion-thumbnail>
+  <div class="container">
+    @if (pokemonData.sprites.other['official-artwork'].front_shiny){
+    @if(!shiny){
+    <ion-item>
+      <ion-thumbnail class="content-center container" style="height: 300px; width: 300px;">
+        <img [src]="pokemonImageBaseUrl + pokemonData.id + '.png'" />
+      </ion-thumbnail>
+      <ion-row class="ion-justify-content-center">
+        <ion-button shape="round" (click)="handlePlay()"><ion-icon name="musical-notes"></ion-icon>Cry</ion-button>
+      </ion-row>
+    </ion-item>
     <ion-row class="ion-justify-content-center">
-      <ion-button shape="round" (click)="handlePlay()"><ion-icon name="musical-notes"></ion-icon>Cry</ion-button>
+      <ion-button shape="round" (click)="handleShiny()">Shiny</ion-button>
     </ion-row>
-  </ion-item>
-  <ion-row class="ion-justify-content-center">
-    <ion-button shape="round" (click)="handleShiny()">Shiny</ion-button>
-  </ion-row>
-  } @else{
-  <ion-item>
-    <ion-thumbnail class="content-center" style="height: 300px; width: 300px;">
-      <img [src]="pokemonImageBaseUrl +'shiny/'+ pokemonData.id + '.png'" />
-    </ion-thumbnail>
+    } @else{
+    <ion-item>
+      <ion-thumbnail class="content-center" style="height: 300px; width: 300px;">
+        <img [src]="pokemonImageBaseUrl +'shiny/'+ pokemonData.id + '.png'" />
+      </ion-thumbnail>
+      <ion-row class="ion-justify-content-center">
+        <ion-button shape="round" (click)="handlePlay()"><ion-icon name="musical-notes"></ion-icon>Cry</ion-button>
+      </ion-row>
+    </ion-item>
     <ion-row class="ion-justify-content-center">
-      <ion-button shape="round" (click)="handlePlay()"><ion-icon name="musical-notes"></ion-icon>Cry</ion-button>
+      <ion-button shape="round" (click)="handleShiny()">Default</ion-button>
     </ion-row>
-  </ion-item>
-  <ion-row class="ion-justify-content-center">
-    <ion-button shape="round" (click)="handleShiny()">Default</ion-button>
-  </ion-row>
-  }
-  } @else {
-  <ion-item>
-    <ion-thumbnail class="content-center" style="height: 300px; width: 300px;">
-      <img [src]="pokemonImageBaseUrl + pokemonData.id + '.png'" />
-    </ion-thumbnail>
-  </ion-item>
-  }
+    }
+    } @else {
+    <ion-item>
+      <ion-thumbnail class="content-center" style="height: 300px; width: 300px;">
+        <img [src]="pokemonImageBaseUrl + pokemonData.id + '.png'" />
+      </ion-thumbnail>
+    </ion-item>
+    }
+  </div>
+
   <ion-card-header>
     <ion-card-title class="ion-text-center " style="font-size: 30px;">Name:
       {{pokemonData.species.name}}</ion-card-title>
   </ion-card-header>
+
   <app-stats-card [pokemonName]="pokemonData"></app-stats-card>
-  <app-pokemon-evolution-card [pokemonData]="pokemonEvolution"></app-pokemon-evolution-card>
+
+  <ion-accordion-group [multiple]="true" expand="inset">
+    <ion-accordion value="first">
+      <ion-item slot="header" color="light">
+        <ion-label>Evolution</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <app-pokemon-evolution-card [pokemonData]="pokemonEvolution"></app-pokemon-evolution-card>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="second">
+      <ion-item slot="header" color="light">
+        <ion-label>Group damage details</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <app-group-detais [groupData]="pokemonData.types"></app-group-detais>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="third">
+      <ion-item slot="header" color="light">
+        <ion-label>Moves</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <app-moves-lists [pokemonData]="pokemonData"></app-moves-lists>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+
   }
+
 </ion-content>

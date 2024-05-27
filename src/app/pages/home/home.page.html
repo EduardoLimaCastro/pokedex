@@ -1,11 +1,5 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-button color="primary">
-        <ion-icon slot="start" name="list-outline"></ion-icon>
-        List of Favorite Pokemons
-      </ion-button>
-    </ion-buttons>
     <ion-title class="ion-text-center">
       POKÉDEX
     </ion-title>
@@ -24,19 +18,17 @@
       <ion-card-title class="ion-text-center">POKÉMONS LIST</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-list>
-        <div class="wrapper-home">
-          @for (poke of pokemonData; track poke.id){
-          <app-card-pokemons [pokemonData]="poke"></app-card-pokemons>
-          }@empty {
-          @if (!isLoading) {
-          <ion-item lines="none" class="ion-padding-bottom">
-            <ion-label class="ion-text-center">No Pokémon found</ion-label>
-          </ion-item>
-          }
-          }
-        </div>
-      </ion-list>
+      <div class="wrapper-home">
+        @for (poke of pokemonData; track poke.id){
+        <app-card-pokemons [pokemonData]="poke"></app-card-pokemons>
+        }@empty {
+        @if (!isLoading) {
+        <ion-item lines="none" class="ion-padding-bottom">
+          <ion-label class="ion-text-center">No Pokémon found</ion-label>
+        </ion-item>
+        }
+        }
+      </div>
     </ion-card-content>
   </ion-card>
   <ion-list>
