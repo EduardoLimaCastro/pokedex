@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { IonContent, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCard, IonCardContent, IonItem } from '@ionic/angular/standalone';
 import { MoveDetails } from 'src/app/interfaces/moves';
 import { MovesService } from 'src/app/services/moves.service';
@@ -30,11 +30,10 @@ export class MovesListsComponent {
   constructor() { }
 
   onMoveChange(value: any) {
-    // console.log(value)
     this.moves = this.getMovesDetails(value)
-    // console.log(this.moves)
   }
 
+  //--------Fetch de detalhes sobre os golpes do Pokémon
   getMovesDetails(moves: any[]) {
     return moves.map(move => ({
       name: move.move.name,

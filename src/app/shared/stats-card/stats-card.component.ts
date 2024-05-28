@@ -37,27 +37,23 @@ export class StatsCardComponent {
   }
 
   onPokemonNameChange(newName: any): void {
-    // console.log(newName)
     this.pokemonData = newName
     this.getPokemonSpecies(newName);
-    // console.log(this.pokemonData.types[0].type.name)
-    // this.getPokemonData(newName);
   }
 
 
   constructor() { addIcons({ warning, musicalNotes }) }
 
+  //-------Fetch de espécies dos Pokémons
   getPokemonSpecies(pokemonName: any): void {
-    // console.log('Getting species for:', pokemonName);
     if (pokemonName) {
       this.pokemonService.getPokemonSpecies(pokemonName.name).subscribe(
         (pokemon) => {
-          // console.log('Pokemon species:', pokemon);
           this.pokemonSpecies = pokemon;
         })
     }
   }
-
+  //--------Definição da cor da Badge de acordo com o grupo do Pokémon
   getBadgeColor(type: string): string {
     switch (type) {
       case 'normal':

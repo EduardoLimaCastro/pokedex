@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IonContent, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCard, IonCardContent, IonItem, IonBadge } from '@ionic/angular/standalone';
 @Component({
   selector: 'app-moves-cards',
@@ -24,9 +24,7 @@ export class MovesCardsComponent {
   constructor() { }
 
   onMoveChange(move: string) {
-    // console.log(move)
     this.moves = move
-    // console.log(this.moves)
   }
 
 }
