@@ -33,7 +33,7 @@ export class FavoritesPage {
       this.loadPokemonData(this.favoritePokemons)
     }
   }
-
+  //-------Carregar informações dos Pokemons listados
   loadPokemonData(names: string[]) {
     names.forEach((name) => {
       this.pokemonService.getPokemonDetails(name).subscribe({
@@ -47,7 +47,7 @@ export class FavoritesPage {
       });
     });
   }
-
+  //-------Handler do botão de retornar a página principal
   backPage() {
     this.router.navigate(['/home'])
       .then(() => {
