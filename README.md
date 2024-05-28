@@ -111,13 +111,13 @@ Nessa aba são mostrados dados relacionados com o grupo do Pokémon como:
 - Não recebe dano de:
 
 <p align="center" >
-<img src="src/assets/images/group.png" alt="Imagem da Grupo" width="400" a/>
+<img src="src/assets/images/group.png" alt="Imagem da Grupo" width="600" a/>
 </p>
 
 #### Moves
 Nessa aba são apresentados alguns golpes do Pokémon selecionado:
 
 <p align="center" >
-<img src="src/assets/images/moves.png" alt="Imagem da Abilidade" width="400" a/>
+<img src="src/assets/images/moves.png" alt="Imagem da Abilidade" width="600" a/>
 </p>
 
