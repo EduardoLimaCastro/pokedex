@@ -79,7 +79,7 @@ Com o aplicativo, voçê pode adicionar os Pokémons que mais gosta a sua lista 
 Ao clicar na lista de Pokémons favoritos, aparecerão somente os Pokémons marcados na sua tela.
 
 <p align="center">
-<img src="src/assets/images/favoriteslist.png" alt="Imagem dos favoritos" width="200" a/>
+<img src="src/assets/images/favorites.png" alt="Imagem dos favoritos" width="200" a/>
 </p>
 
 #### Detalhes do Pokemon
