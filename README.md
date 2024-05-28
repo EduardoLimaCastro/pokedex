@@ -79,7 +79,7 @@ Com o aplicativo, voçê pode adicionar os Pokémons que mais gosta a sua lista 
 Ao clicar na lista de Pokémons favoritos, aparecerão somente os Pokémons marcados na sua tela.
 
 <p align="center">
-<img src="src/assets/images/favoriteslist.png" alt="Imagem da homePage" width="200" a/>
+<img src="src/assets/images/favoriteslist.png" alt="Imagem dos favoritos" width="200" a/>
 </p>
 
 #### Detalhes do Pokemon
@@ -111,13 +111,13 @@ Nessa aba são mostrados dados relacionados com o grupo do Pokémon como:
 - Não recebe dano de:
 
 <p align="center" >
-<img src="src/assets/images/group.png" alt="Imagem da Grupo" width="200" a/>
+<img src="src/assets/images/group.png" alt="Imagem da Grupo" width="400" a/>
 </p>
 
 #### Moves
 Nessa aba são apresentados alguns golpes do Pokémon selecionado:
 
 <p align="center" >
-<img src="src/assets/images/moves.png" alt="Imagem da Abilidade" width="200" a/>
+<img src="src/assets/images/moves.png" alt="Imagem da Abilidade" width="400" a/>
 </p>
 
