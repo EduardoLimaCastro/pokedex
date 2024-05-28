@@ -79,7 +79,7 @@ Com o aplicativo, voçê pode adicionar os Pokémons que mais gosta a sua lista 
 Ao clicar na lista de Pokémons favoritos, aparecerão somente os Pokémons marcados na sua tela.
 
 <p align="center">
-<img src="src/assets/images/favoritesList.png" alt="Imagem da homePage" width="200" a/>
+<img src="src/assets/images/favoriteslist.png" alt="Imagem da homePage" width="200" a/>
 </p>
 
 #### Detalhes do Pokemon
@@ -87,7 +87,7 @@ Ao clicar na lista de Pokémons favoritos, aparecerão somente os Pokémons marc
 Ao clicar no card do Pokemon, a página de detalhes será aberta onde o Pokemon pode ser favoritado ao clicar na estrela no canto superior direito, o som do Pokémom pode ser tocado pressionando o botão Cry ao lado de sua imagem e pode-se verificar sua imagem Shiny e a Default, detalhes de abilidades e uma frase que dá características do Pokémon.
 
 <p align="center">
-<img src="src/assets/images/details.gif" alt="Imagem da homePage" width="200" a/>
+<img src="src/assets/images/details.gif" alt="Imagem dos detalhes" width="200" a/>
 </p>
 
 #### Linha de evolução 
@@ -96,8 +96,8 @@ Na aba de evolução são apresentados todos os Pokémons da linha de evolução
 
 <p align="center" >
 
-<img src="src/assets/images/Evolutions.png" alt="Imagem da homePage" width="200" a/>
-<img src="src/assets/images/Evolutions2.png" alt="Imagem da homePage" width="200" a/>
+<img src="src/assets/images/Evolutions.png" alt="Imagem da Evolução" width="200" a/>
+<img src="src/assets/images/Evolutions2.png" alt="Imagem da Evolução" width="200" a/>
 </p>
 
 #### Detalhes dos grupos do Pokémon
@@ -111,13 +111,13 @@ Nessa aba são mostrados dados relacionados com o grupo do Pokémon como:
 - Não recebe dano de:
 
 <p align="center" >
-<img src="src/assets/images/group.png" alt="Imagem da homePage" width="200" a/>
+<img src="src/assets/images/group.png" alt="Imagem da Grupo" width="200" a/>
 </p>
 
 #### Moves
 Nessa aba são apresentados alguns golpes do Pokémon selecionado:
 
 <p align="center" >
-<img src="src/assets/images/moves.png" alt="Imagem da homePage" width="200" a/>
+<img src="src/assets/images/moves.png" alt="Imagem da Abilidade" width="200" a/>
 </p>
 
