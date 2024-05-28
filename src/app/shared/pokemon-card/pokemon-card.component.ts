@@ -40,14 +40,12 @@ export class PokemonCardComponent {
   constructor() { }
 
   onPokemonChange(pokemon: []) {
-    // console.log(pokemon)
-    this.pokemonsArrayTest = pokemon
   }
 
   onPokemonEvolutionsChange(pokemon: []) {
-    console.log(pokemon)
   }
 
+  //--------Definição da cor da Badge de acordo com o grupo do Pokémon
   getBadgeColor(type: string): string {
     switch (type) {
       case 'normal':

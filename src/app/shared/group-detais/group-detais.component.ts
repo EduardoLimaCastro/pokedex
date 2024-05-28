@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { IonContent, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCard, IonCardContent, IonItem } from '@ionic/angular/standalone';
 import { TypesDetails } from 'src/app/interfaces/types';
 import { TypesService } from 'src/app/services/types.service';
@@ -28,6 +28,7 @@ export class GroupDetaisComponent {
 
   constructor() { }
 
+  //------Fetch de grupos do Pokemon
   onGroupChange(groups: any) {
     // console.log(groups)
     this.typesPokemon = this.typesGroupsChange(groups)
@@ -44,6 +45,7 @@ export class GroupDetaisComponent {
       });
     });
   }
+
 
   typesGroupsChange(groups: any[]) {
     console.log(groups)
