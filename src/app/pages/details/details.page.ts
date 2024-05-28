@@ -32,27 +32,24 @@ export class DetailsPage {
   public clickedPokemons: string[] = []
   public router = inject(Router);
 
+  //-------Configuração do player de áudio Howler 
+  public player: Howl | null = null;
+
   @Input()
   set id(pokemonId: string) {
     if (pokemonId) {
       this.pokemonService.getPokemonDetails(pokemonId).subscribe((pokemon) => {
-        // console.log(pokemon)
         this.pokemonData = pokemon;
       })
       this.pokemonService.getPokemonSpecies(pokemonId).subscribe((pokemon) => {
-        // console.log(pokemon)
         this.pokemonSpecies = pokemon;
         this.pokemonService.getPokemonEvolutionChain(pokemon.evolution_chain.url).subscribe((poke) => {
-          // console.log(poke)
           this.pokemonEvolution = this.getAllSpeciesNames(poke.chain)
-          // console.log(this.pokemonEvolution)
         })
       })
       this.checkIfFavorite(pokemonId);
     }
   }
-
-  public player: Howl | null = null;
 
   constructor() {
     addIcons({ musicalNotes, star });
@@ -62,6 +59,8 @@ export class DetailsPage {
     }
   }
 
+
+  //-------Handler do player de áudio Howler 
   handlePlay() {
     this.player = new Howl({
       src: this.pokemonData?.cries.latest as string
@@ -69,9 +68,12 @@ export class DetailsPage {
     this.player.play();
   }
 
+  //-------Handler do botão shiny  
   handleShiny() {
     this.shiny = !this.shiny
   }
+
+  //-------Handler do botão de favoritos
   toggleClick(pokemon: any) {
     const index = this.clickedPokemons.indexOf(pokemon);
     if (index !== -1) {
@@ -84,10 +86,11 @@ export class DetailsPage {
   }
 
   saveClickedPokemons() {
-    // Save clicked pokemons list to local storage
+    // Salva a lista de Pokémons clicados no LocalStorage
     localStorage.setItem('favorites', JSON.stringify(this.clickedPokemons));
   }
 
+  //-------Criação de um objeto com os detalhes de evoluções
   getAllSpeciesNames(chain: any,) {
     const evolutionArray = [];
     let currentChain = chain;
@@ -123,15 +126,16 @@ export class DetailsPage {
     return evolutionArray;
   }
 
+  //-------Handler dos Pokemons Favoritos
   handleFavoritePokemon(pokemon: string): boolean {
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-    // console.log('Favorites: ', favorites)
     if (favorites.includes(pokemon)) {
       return true
     }
     return false;
   }
 
+  //-------Handler dos Pokemons Favoritos
   checkIfFavorite(pokemonName: string) {
     console.log(pokemonName)
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]')
@@ -140,6 +144,7 @@ export class DetailsPage {
       this.isClicked = true
     }
   }
+  //-------Handler do botão de retornar a página principal
   backPage() {
     this.router.navigate(['/home'])
       .then(() => {

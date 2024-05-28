@@ -12,6 +12,7 @@ export class TypesService {
 
   constructor() { }
 
+  //----Faz o fetch de detalhes de um tipo de Pokémon
   getTypesDetais(url: string): Observable<TypesDetails> {
     return this.http.get<TypesDetails>(url);
   }

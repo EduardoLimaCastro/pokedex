@@ -19,7 +19,7 @@
 
 O Pokedex app é um projeto feito em Ionic Framework com Angular para que você possa ver todos os Pokémons, salvar alguns como favoritos em sua própria lista e ver detalhes de cada um como:
 - Status das características do Pokémon
-- Imagem padrão e imagem do pokemon Shiny
+- Imagem padrão e imagem do Pokémon Shiny
 - Evoluções
 - Golpes
 - Forças e fraquezas dos tipos do Pokémon
@@ -57,6 +57,10 @@ Acesse a pasta do projeto no terminal/cmd
 
     npm install 
 
+4 - Inicie o projeto
+
+    ionic serve 
+
 ## Construído com
 
 - **[Ionic Framework](https://ionicframework.com/)**
@@ -68,7 +72,7 @@ Acesse a pasta do projeto no terminal/cmd
 ## Funcionalidades
 
 #### Favoritar seus Pokémons
-Com o aplicativo, voçê pode adicionar os Pokémons que mais gosta a sua lista de favoritos clicando no ícone de estrela na parte superior direta do card do Pokémon.
+Com o aplicativo, você pode adicionar os Pokémons que mais gosta a sua lista de favoritos clicando no ícone de estrela na parte superior direta do card do Pokémon.
 
 <p align="center">
 <img src="src/assets/images/favorite.gif" alt="Imagem da homePage" width="200" a/>
@@ -82,9 +86,9 @@ Ao clicar na lista de Pokémons favoritos, aparecerão somente os Pokémons marc
 <img src="src/assets/images/favorites.png" alt="Imagem dos favoritos" width="200" a/>
 </p>
 
-#### Detalhes do Pokemon
+#### Detalhes do Pokémon
 
-Ao clicar no card do Pokemon, a página de detalhes será aberta onde o Pokemon pode ser favoritado ao clicar na estrela no canto superior direito, o som do Pokémom pode ser tocado pressionando o botão Cry ao lado de sua imagem e pode-se verificar sua imagem Shiny e a Default, detalhes de abilidades e uma frase que dá características do Pokémon.
+Ao clicar no card do Pokémon, a página de detalhes será aberta. Nela é possível favoritar o Pokémon ao clicar na estrela no canto superior direito, e reproduzir o som do Pokémom ao clicar o botão 'Cry' ao lado de sua imagem. Também pode-se verificar suas imagens 'Shiny' e 'Default', além de detalhes de habilidades e uma frase que dá as características de cada Pokémon.
 
 <p align="center">
 <img src="src/assets/images/details.gif" alt="Imagem dos detalhes" width="200" a/>

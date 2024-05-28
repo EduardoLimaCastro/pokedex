@@ -1,10 +1,9 @@
-import { Component, Input, NgZone, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { IonContent, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCard, IonCardContent, IonItem, IonBadge, IonIcon, IonButton } from '@ionic/angular/standalone';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { RouterModule } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { star } from 'ionicons/icons';
-import { ChangeDetectorRef } from '@angular/core';
 import { PokemonDetails } from 'src/app/interfaces/pokemonDetails';
 
 @Component({
@@ -21,7 +20,6 @@ export class CardPokemonsComponent {
   private _pokemonData: PokemonDetails = {} as PokemonDetails
   public isClicked: boolean = false;
   public clickedPokemons: string[] = []
-  public cdr = inject(ChangeDetectorRef);
 
   @Input() set pokemonData(value: any) {
     this._pokemonData = value
@@ -32,36 +30,28 @@ export class CardPokemonsComponent {
     return this._pokemonData;
   }
 
-  constructor(private ngZone: NgZone) {
+  constructor() {
     addIcons({ star });
     this.isClicked = false
   }
 
-  ionViewWillEnter() {
-    this.updateIsClicked();
-    this.ngZone.run(() => {
-      this.updateIsClicked();
-    });
-  }
-
+  //-----Atualizar Pokémons favoritos
   updateIsClicked() {
     const favoritePokemon: string[] = JSON.parse(localStorage.getItem('favorites') || '[]');
     const pokemonName = this.pokemonData.name; // Replace 'Pikachu' with the actual Pokémon name you want to track
     this.isClicked = favoritePokemon.includes(pokemonName);
-    // console.log(this.isClicked)
   }
 
   onPokemonChange(value: any) {
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]')
-    // console.log(favorites)
     const isFavorite = favorites.includes(value)
     if (isFavorite) {
       this.isClicked = true
     }
     this.updateIsClicked();
-    // console.log(favorites)
   }
 
+  //-----Definir a cor da badge de acordo com o  tipo do Pokémon
   getBadgeColor(type: string): string {
     switch (type) {
       case 'normal':
@@ -109,37 +99,27 @@ export class CardPokemonsComponent {
     }
   }
 
+  //-----Handler do clik de favorito
   handleIconClick(event: Event) {
     event.stopPropagation();
     this.saveClickedPokemons(this.pokemonData.name);
     this.isClicked = !this.isClicked
   }
 
+  //-----Handler para salvar os pokemons favoritos no localStorage
   saveClickedPokemons(name: string) {
-    // console.log(name)
     let favoritesStorage = localStorage.getItem('favorites')
     let favorites: string[] = []
     if (favoritesStorage) {
       favorites = JSON.parse(favoritesStorage)
     }
-    // console.log(favorites)
     if (favorites?.includes(name)) {
-      // console.log('include');
       const index = favorites.indexOf(name);
-      // console.log(index)
       favorites.splice(index, 1);
-      // console.log(favorites)
       localStorage.setItem('favorites', JSON.stringify(favorites))
     } else {
       favorites.push(name);
-      // console.log(favorites)
       localStorage.setItem('favorites', JSON.stringify(favorites))
     }
-    // if (favorites?.includes(name[0])) {
-    //   console.log('first')
-    // } else {
-    //   console.log('new')
-    //   favorites.push(name)
-    // }
   }
 }

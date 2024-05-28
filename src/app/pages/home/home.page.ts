@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, InfiniteScrollCustomEvent, IonAvatar, IonItem, IonSkeletonText, IonList, IonAlert, IonLabel, IonButton, IonBadge, IonRow, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonThumbnail, IonIcon, IonButtons } from '@ionic/angular/standalone';
 import { PokemonService } from '../../services/pokemon.service';
 import { catchError, finalize } from 'rxjs';
@@ -46,14 +46,9 @@ export class HomePage {
   constructor() {
     this.loadPokemons()
     addIcons({ listOutline, list })
-    this.checkFacorites()
   }
 
-  checkFacorites() {
-    const favorites = localStorage.getItem('favorites');
-    // console.log(favorites)
-  }
-
+  //----Carrega dados dos Pokemons com paginação de 20 por página
   loadPokemons(event?: InfiniteScrollCustomEvent) {
     this.error = null;
 
@@ -88,6 +83,7 @@ export class HomePage {
     })
   }
 
+  //----Carrega dados de detalhes de cada Pokemons
   loadPokemonData(names: string[]) {
     names.forEach((name) => {
       this.pokemonService.getPokemonDetails(name).subscribe({
@@ -101,24 +97,27 @@ export class HomePage {
     });
   }
 
+  //----Reseta os dados para passar para a próxima página
   resetData() {
     this.names = [];
     this.pokemons = [];
     this.pokemonData = [];
   }
 
+  //----Faz a paginação para a página anterior
   paginaAnterior() {
     if (this.currentPage >= 2) {
       this.currentPage--;
     }
-    // console.log(this.currentPage)
   }
 
+  //----Faz a paginação para a póxima página
   proximaPagina() {
     this.currentPage++;
     console.log(this.currentPage)
   }
 
+  //----Faz a rota para a página de favoritos
   favoritesPage() {
     this.router.navigate(['/favorites'])
   }

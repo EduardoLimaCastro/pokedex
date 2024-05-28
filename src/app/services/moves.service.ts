@@ -12,6 +12,7 @@ export class MovesService {
 
   constructor() { }
 
+  //----Faz o fetch de todos os moves de um Pokemon específico
   getMovesDetais(url: string): Observable<MoveDetails> {
     return this.http.get<MoveDetails>(url);
   }
