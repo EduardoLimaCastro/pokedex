@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { star } from 'ionicons/icons';
 import { ChangeDetectorRef } from '@angular/core';
+import { PokemonDetails } from 'src/app/interfaces/pokemonDetails';
 
 @Component({
   selector: 'app-card-pokemons',
@@ -17,7 +18,7 @@ export class CardPokemonsComponent {
 
   public pokemonImageBaseUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/';
   public pokemonService = inject(PokemonService);
-  private _pokemonData: any = []
+  private _pokemonData: PokemonDetails = {} as PokemonDetails
   public isClicked: boolean = false;
   public clickedPokemons: string[] = []
   public cdr = inject(ChangeDetectorRef);
