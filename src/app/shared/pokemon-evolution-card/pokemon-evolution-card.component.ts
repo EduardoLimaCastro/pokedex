@@ -30,10 +30,10 @@ export class PokemonEvolutionCardComponent {
   constructor() { }
 
   onPokemonDataChange(pokemon: PokemonEvolutions[]) {
-    // console.log(pokemon);
     this.getPokemonDetails(pokemon)
   }
 
+  //-------Fetch de detalhes dos Pokémons
   getPokemonDetails(pokemonsArray: PokemonEvolutions[]) {
     if (pokemonsArray) {
       pokemonsArray.forEach((name) => {
