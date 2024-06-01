@@ -146,7 +146,7 @@ export class DetailsPage {
   }
   //-------Handler do botão de retornar a página principal
   backPage() {
-    this.router.navigate(['/home'])
+    this.router.navigate([''])
       .then(() => {
         window.location.reload()
       })
